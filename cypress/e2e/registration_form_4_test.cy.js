@@ -3,6 +3,7 @@ beforeEach(() => {
 })
 
 // Assignement 6: analyze and fix failed test
+
 describe('Input fields', () => {
     it('Username cannot be empty string', () => {
         cy.get('#username').type(' ')
@@ -11,15 +12,17 @@ describe('Input fields', () => {
         cy.get('h2').contains('Password').click()
         cy.get('#input_error_message').should('be.visible')
         cy.get('#success_message').should('not.be.visible')
+
     })
 
     it('Username tooltip is visible', () => {
         cy.get('#username').type('{enter}')
         cy.get('h2').contains('Password').click()
-        cy.get('#username').should('have.attr', 'title').should('contain', 'Input field')
+        cy.get('#username').should('have.attr', 'title').should('contain', 'Please add username')
 
         //if not entered, mandatory username field has red border outline
         cy.get('#username').should('have.css', 'box-shadow').should('contain', 'rgb(255, 0, 0)')
+
     })
 
     it('Username should have min and max length values 1 and 50 characters', () => {
@@ -28,11 +31,13 @@ describe('Input fields', () => {
 
         // check that username element has max attribute value equal to 50
         cy.get('#username').should('have.attr', 'max', '50')
+
     })
 
     it('Username should support only letters and numbers', () => {
         // check with regex supporter format
         cy.get('#username').invoke('attr', 'pattern', '[a-zA-Z0-9_]+')
+
     })
 
     it('Email input should support correct pattern', () => {
@@ -41,10 +46,11 @@ describe('Input fields', () => {
         // check that email element has red border outline
         // submit button should not be active
         cy.get('#email').should('have.attr', 'pattern').should('contain', '[a-z0-9]+@[a-z0-9]+\\.[a-z]{2,4}$')
-        cy.get('#email').type('invalid')
+        cy.get('#email').type('invalid2')
         cy.get('h2').contains('Password').click()
         cy.get('#email').should('have.css', 'box-shadow').should('contain', 'rgb(255, 0, 0)')
-        cy.get('.submit_button').should('not.be.enabled');
+        cy.get('.submit_button').should('not.be.enabled')
+
     })
 
     it('User cannot submit empty registration form', () => {
@@ -63,5 +69,6 @@ describe('Input fields', () => {
         cy.get('#cars option').eq(1).should('not.have.text', 'BMW')
         cy.get('#cars option').eq(2).should('not.have.text', 'BMW')
         cy.get('#cars option').eq(3).should('not.have.text', 'BMW')
+
     })
 })

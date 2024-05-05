@@ -117,7 +117,7 @@ describe('Section 2: Visual tests', () => {
 
     })
 
-    it.only('My test for second picture', () => {
+    it('My test for second picture', () => {
         // Create similar test for checking the second picture
         cy.log('Will check logo source and size')
         cy.get('img').next().should('have.attr', 'src').should('include', 'cypress_logo')
@@ -191,7 +191,7 @@ describe('Section 2: Visual tests', () => {
 
     })
 
-    it('Favourite animals dropdown is correct', () => {
+    it.only('Favourite animals dropdown is correct', () => {
         // Here is just an example how to explicitely create screenshot from the code
         // Select second element and create screenshot for this area or full page
         cy.get('#animal').select(1).screenshot('animal drop-down')
